@@ -28,6 +28,9 @@
 #ifndef MANEUVER_MULTIPLEXER_POP_UP_HPP_INCLUDED_
 #define MANEUVER_MULTIPLEXER_POP_UP_HPP_INCLUDED_
 
+// ISO C++ 98 headers.
+#include <limits>
+
 // DUNE headers
 #include <DUNE/DUNE.hpp>
 
@@ -156,7 +159,10 @@ namespace Maneuver
       {
         m_maneuver = *maneuver;
 
-        m_dur_timer.setTop(m_maneuver.duration);
+        if (m_maneuver.duration == 0)
+          m_dur_timer.setTop(std::numeric_limits<float>::max());
+        else
+          m_dur_timer.setTop(m_maneuver.duration);
 
         // Waiting or station keeping will be the same
         if (mustKeep() || mustWait())
