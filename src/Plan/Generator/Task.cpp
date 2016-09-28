@@ -368,8 +368,7 @@ namespace Plan
 
         inf(DTR("generating plan from '%s' template..."), plan_id.c_str());
 
-        if (plan_id == "go" || plan_id == "sk" || plan_id == "safety_sk"
-            || plan_id == "safety_zone")
+        if (plan_id == "go" || plan_id == "sk")
         {
           generateStationKeeping(plan_id, params, result);
           return true;
@@ -379,7 +378,7 @@ namespace Plan
           generateDive(plan_id, params, result);
           return true;
         }
-        else if (plan_id == "surface" || plan_id == "safety_surface")
+        else if (plan_id == "surface")
         {
           // This template makes the vehicle come to the surface and wait
           // above its current position
